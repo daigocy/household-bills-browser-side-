@@ -7,6 +7,13 @@ import { FooterComponent } from './footer/footer.component';
 import { ContentComponent } from './content/content.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MenuComponent } from './menu/menu.component';
+import { TodayComponent } from './bill/today/today.component';
+import { HistoryComponent } from './bill/history/history.component';
+import { TimeComponent } from './statistics/time/time.component';
+import { CategoryComponent } from './statistics/category/category.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { Error404Component } from './error404/error404.component';
+import { HomeComponent } from './bill/home/home.component';
 
 @NgModule({
   declarations: [
@@ -15,10 +22,17 @@ import { MenuComponent } from './menu/menu.component';
     FooterComponent,
     ContentComponent,
     SidebarComponent,
-    MenuComponent
+    MenuComponent,
+    TodayComponent,
+    HistoryComponent,
+    TimeComponent,
+    CategoryComponent,
+    Error404Component,
+    HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

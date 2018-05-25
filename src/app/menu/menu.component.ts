@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Bill, BillHistory } from '../bill/bill';
+import { BillService } from '../bill/bill.service';
+
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
-  constructor() { }
+  billHistory: BillHistory;
+  constructor(public billService: BillService) { }
 
   ngOnInit() {
   }
-
+  getBillHistory() {
+  }
 }

@@ -26,100 +26,23 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu tree" data-widget="tree">
-      <li class="header">MAIN NAVIGATION</li>
-      <li class="treeview">
-        <a href="#">
+      <li class="header">links</li>
+      <li >
+        <a routerLink="/today" routerLinkActive="bg-green" [routerLinkActiveOptions]="{exact:true}">
           <i class="fa fa-dashboard"></i>
-          <span>Dashboard</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
+          <span>今日消费</span>
         </a>
-        <ul class="treeview-menu">
-          <li>
-            <a href="javascript:;">
-              <i class="fa fa-circle-o"></i> Dashboard v1</a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <i class="fa fa-circle-o"></i> Dashboard v2</a>
-          </li>
-        </ul>
       </li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-share"></i>
-          <span>多级树</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
+      <li >
+        <a routerLink="/history" routerLinkActive="bg-green" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-dashboard"></i>
+          <span>历史记录</span>
         </a>
-        <ul class="treeview-menu">
-          <li>
-            <a href="#">
-              <i class="fa fa-circle-o"></i> 一级</a>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-circle-o"></i> 一级
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li>
-                <a href="#">
-                  <i class="fa fa-circle-o"></i> 二级</a>
-              </li>
-              <li class="treeview">
-                <a href="#">
-                  <i class="fa fa-circle-o"></i> 二级
-                  <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-                </a>
-                <ul class="treeview-menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-circle-o"></i> 三级</a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-circle-o"></i> 三级</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-circle-o"></i> 一级</a>
-          </li>
-        </ul>
       </li>
-      <li class="header">LABELS</li>
       <li>
-        <a href="#">
+        <a routerLink="/statistics">
           <i class="fa fa-circle-o text-red"></i>
-          <span>Important</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-circle-o text-yellow"></i>
-          <span>Warning</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-circle-o text-aqua"></i>
-          <span>Information</span>
-        </a>
-      </li>
-      <li class="bg-green">
-        <a href="javascript:;">
-          <i class="fa fa-star-o" style="color: rgb(255, 255, 255);"></i>
-          <span style="color: rgb(255, 255, 255);">Premium Templates</span>
+          <span>数据统计</span>
         </a>
       </li>
     </ul>
