@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,6 +15,7 @@ import { CategoryComponent } from './statistics/category/category.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { Error404Component } from './error404/error404.component';
 import { HomeComponent } from './bill/home/home.component';
+import { EditorComponent } from './bill/editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,12 @@ import { HomeComponent } from './bill/home/home.component';
     TimeComponent,
     CategoryComponent,
     Error404Component,
-    HomeComponent
+    HomeComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],

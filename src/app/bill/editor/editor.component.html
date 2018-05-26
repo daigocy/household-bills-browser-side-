@@ -1,0 +1,35 @@
+<div *ngIf="bill" class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title" *ngIf="bill">修改账单</h3>
+    <h3 class="box-title" *ngIf="!bill">新增</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+              <label>类别</label>
+              <select  class="form-control">
+                <option value="0">买菜做饭</option>
+                <option value="1">家具器件</option>
+                <option value="2">鞋帽衣裤</option>
+                <option value="3">零食饮料</option>
+                <option value="4">其他</option>
+              </select>
+            </div>
+        <!-- /.form-group -->
+        
+        <!-- /.form-group -->
+      </div>
+      <!-- /.col -->
+      
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer">
+    Visit <a>Select2 documentation</a> for more examples and information about
+    the plugin.
+  </div>
+</div>

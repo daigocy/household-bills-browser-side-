@@ -8,7 +8,7 @@
         <i class="fa fa-dashboard"></i> 主页</a>
     </li>
     <li class="active">
-      <a href="javascript:;">今日消费</a>
+      <a>今日消费</a>
     </li>
   </ol>
 </section>
@@ -41,8 +41,8 @@
                 <td>{{ bill.date | date:"y/MM/dd" }}</td>
 
                 <td>
-                  <span class="badge bg-green">修改</span>
-                  <span class="badge bg-red">删除</span>
+                  <span (click)="update(bill.id)" class="btn-xs bg-yellow">修改</span>
+                  <span class="btn-xs bg-red">删除</span>
                 </td>
               </tr>
 
@@ -50,11 +50,10 @@
           </table>
         </div>
         <div class="box-footer clearfix">
-          <ul class="pagination pagination-sm no-margin pull-right">
-            <li>
-              <a href="#">-></a>
-            </li>
-          </ul>
+          <h4>总计：{{total}}
+            <a (click)="update(0)" class="btn btn-primary pull-right" style="left: 20px;margin-right: 30px">新增</a>
+          </h4>
+          
         </div>
       </div>
     </div>

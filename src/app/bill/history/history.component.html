@@ -28,7 +28,6 @@
                 <th style="width:150px">消费</th>
                 <th>详情</th>
                 <th style="width:50px">金额</th>
-                <th style="width:100px">操作</th>
               </tr>
               <tr *ngFor="let bill of historyEntry.bills;let i = index">
                 <td>{{ i+1 }}</td>
@@ -37,21 +36,12 @@
                   {{ bill.desc }}
                 </td>
                 <td>{{bill.cost}}</td>
-                <td>
-                  <span class="badge bg-green">修改</span>
-                  <span class="badge bg-red">删除</span>
-                </td>
               </tr>
-
             </tbody>
           </table>
         </div>
         <div class="box-footer clearfix">
-          <ul class="pagination pagination-sm no-margin pull-right">
-            <li>
-              <a href="#">-></a>
-            </li>
-          </ul>
+            <h4>总计：{{historyEntry.total}}</h4>
         </div>
       </div>
     </div>

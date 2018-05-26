@@ -31,15 +31,15 @@ const billHistory:BillHistory[] = [
   },
   {
     id: 2, name: '买眼罩', category: 4, desc: '买眼罩', cost: 15, user: 0,date: date1
-  }]},
+  }],total: 25},
   { date: date2, bills: [
     {
     id: 3, name: '买菜', category: 0, desc: '买土豆，西红柿', cost: 15, user: 0,date: date2
-  }]},
+  }],total: 15},
   { date: date3, bills: [
     {
     id: 4, name: '买菜', category: 0, desc: '买土豆，西红柿', cost: 12, user: 0,date: date3
-  }]}
+  }],total:12}
 ] 
 
 
