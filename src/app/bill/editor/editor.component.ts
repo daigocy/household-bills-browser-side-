@@ -1,11 +1,15 @@
+/// <reference types="jquery"/>
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import  {Location } from '@angular/common';
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
+// import 'bootstrap-timepicker';
+// import * as bootstrap from 'bootstrap';
 
 import { Bill } from '../bill';
 import { BillService } from '../bill.service';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+
 
 @Component({
   selector: 'app-editor',
@@ -43,10 +47,10 @@ export class EditorComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit() {
     $('.timepicker').timepicker({
-    showInputs: false,
-    showMeridian: false,
-    minuteStep:1,
-    defaultTime: ''
+      showInputs: false,
+      showMeridian: false,
+      minuteStep:1,
+      defaultTime: ''
     });
   }
 
