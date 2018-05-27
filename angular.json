@@ -25,12 +25,14 @@
             "styles": [
               "src/styles.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css",
               "./node_modules/admin-lte/dist/css/adminLTE.min.css",
               "./node_modules/admin-lte/dist/css/skins/_all-skins.min.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js",
               "./node_modules/admin-lte/dist/js/adminlte.min.js"
             ]
           },

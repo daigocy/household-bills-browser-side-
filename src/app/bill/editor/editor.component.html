@@ -1,35 +1,90 @@
 <div *ngIf="bill" class="box box-default">
   <div class="box-header with-border">
-    <h3 class="box-title" *ngIf="bill">修改账单</h3>
-    <h3 class="box-title" *ngIf="!bill">新增</h3>
+    <h3 class="box-title" *ngIf="bill.id">修改账单</h3>
+    <h3 class="box-title" *ngIf="!bill.id">新增账单</h3>
   </div>
-  <!-- /.box-header -->
-  <div class="box-body">
-    <div class="row">
-      <div class="col-md-6">
-          <div class="form-group">
-              <label>类别</label>
-              <select  class="form-control">
-                <option value="0">买菜做饭</option>
-                <option value="1">家具器件</option>
-                <option value="2">鞋帽衣裤</option>
-                <option value="3">零食饮料</option>
-                <option value="4">其他</option>
-              </select>
+  <form [formGroup]="formModel" class="box-body" novalidate>
+    <div class="column">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="form-group"
+        [class.has-error]="formModel.get('name').touched && (formModel.hasError('minlength','name') || formModel.hasError('required','name'))">
+          <label>标题</label>
+          <input formControlName="name" class="form-control" placeholder="Enter ..." type="text">
+          <span class="help-block" [class.hidden]="formModel.get('name').untouched || !formModel.hasError('required','name')">
+            标题不能为空
+          </span>
+          <span class="help-block" [class.hidden]="formModel.get('name').untouched || !formModel.hasError('minlength','name')">
+            标题不能少于2个字
+          </span>
+        </div>
+        <div class="form-group">
+          <label>类别</label>
+          <select formControlName="category" class="form-control">
+            <option value="0">买菜做饭</option>
+            <option value="1">家具器件</option>
+            <option value="2">鞋帽衣裤</option>
+            <option value="3">零食饮料</option>
+            <option value="4">其他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>描述</label>
+          <textarea formControlName="desc" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+        </div>
+        <div class="form-group" 
+        [class.has-error]="formModel.get('cost').touched && formModel.hasError('required','cost')">
+          <label>金额</label>
+          <div class="input-group" id="bill-cost">
+            <span class="input-group-addon">$</span>
+            <input formControlName="cost" class="form-control" type="number">
+            <span class="input-group-addon">元</span>
+          </div>
+          <span class="help-block" [class.hidden]="formModel.get('cost').untouched || !formModel.hasError('required','cost')">
+            金额必须是数字且不能为空
+          </span>
+        </div>
+        <div class="form-group">
+            <label>消费时间</label>
+
+            <div class="input-group">
+              <input #time formControlName="time" class="form-control timepicker" type="text" (blur)="resetTime()">
+
+              <div class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+              </div>
             </div>
-        <!-- /.form-group -->
-        
-        <!-- /.form-group -->
+            <!-- /.input group -->
+          </div>
+        <div class="form-group" formArrayName="user"
+        [class.has-error]="formModel.get('user').touched && formModel.hasError('usersNumber','user')">
+          <label>消费人</label>
+          <div class="checkbox" *ngFor="let u of users;let i=index">
+            <label>
+              <input type="checkbox" [formControlName]="i"> {{u}}
+            </label>
+          </div>
+          <span class="help-block" [class.hidden]="formModel.get('user').untouched || !formModel.hasError('usersNumber','user')">
+            消费人不能为空
+          </span>
+        </div>
       </div>
-      <!-- /.col -->
-      
-      <!-- /.col -->
     </div>
-    <!-- /.row -->
-  </div>
-  <!-- /.box-body -->
+  </form>
   <div class="box-footer">
-    Visit <a>Select2 documentation</a> for more examples and information about
-    the plugin.
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <button class="btn btn-default" (click)="goBack()">返回</button>
+        <button class="btn btn-success pull-right" [class.disabled]="formModel.invalid" [disabled]="formModel.invalid" (click)="formModel.value.time=time.value;doSave()">保存</button>
+      </div>
+    </div>
+
   </div>
+  <script>
+    $('.timepicker').timepicker({
+    showInputs: false,
+    showMeridian: false,
+    minuteStep:1,
+    defaultTime: ''
+    });
+  </script>
 </div>

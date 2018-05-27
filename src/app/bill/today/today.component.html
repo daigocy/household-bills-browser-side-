@@ -28,7 +28,7 @@
                 <th style="width:150px">消费</th>
                 <th>详情</th>
                 <th style="width:50px">金额</th>
-                <th style="width:150px">日期</th>
+                <th style="width:150px">时间</th>
                 <th style="width:100px">操作</th>
               </tr>
               <tr *ngFor="let bill of bills;let i = index">
@@ -38,7 +38,7 @@
                   {{ bill.desc }}
                 </td>
                 <td>{{bill.cost}}</td>
-                <td>{{ bill.date | date:"y/MM/dd" }}</td>
+                <td>{{ bill.date | date:"hh:mm" }}</td>
 
                 <td>
                   <span (click)="update(bill.id)" class="btn-xs bg-yellow">修改</span>

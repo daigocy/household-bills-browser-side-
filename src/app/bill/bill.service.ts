@@ -59,4 +59,10 @@ export class BillService {
   getBillHistory():Observable<BillHistory[]> {
     return of(billHistory);
   }
+  postBill(bill:Bill):Observable<any> {
+    let newId = bills[bills.length-1].id +1;
+    bill.id = newId;
+    bills.push(bill);
+    return of('ok');
+  }
 }
