@@ -77,14 +77,5 @@
         <button class="btn btn-success pull-right" [class.disabled]="formModel.invalid" [disabled]="formModel.invalid" (click)="formModel.value.time=time.value;doSave()">保存</button>
       </div>
     </div>
-
   </div>
-  <script>
-    $('.timepicker').timepicker({
-    showInputs: false,
-    showMeridian: false,
-    minuteStep:1,
-    defaultTime: ''
-    });
-  </script>
 </div>

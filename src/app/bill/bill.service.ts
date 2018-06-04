@@ -60,9 +60,23 @@ export class BillService {
     return of(billHistory);
   }
   postBill(bill:Bill):Observable<any> {
-    let newId = bills[bills.length-1].id +1;
+    let newId = bills.length? bills[bills.length-1].id +1: 1;
     bill.id = newId;
     bills.push(bill);
+    return of('ok');
+  }
+  putBill(bill: Bill):Observable<any> {
+    return of('ok');
+  }
+  deleteBill(bill:Bill | number):Observable<any> {
+    let id = typeof bill === 'number'?bill:bill.id;
+    let billIndex = 0;
+    bills.forEach((b,index) => {
+      if(b.id === id) {
+        billIndex = index;
+      }
+    });
+    bills.splice(billIndex, 1);
     return of('ok');
   }
 }

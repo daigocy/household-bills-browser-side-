@@ -2,9 +2,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import  {Location } from '@angular/common';
-// import * as $ from 'jquery';
-// import 'bootstrap-timepicker';
-// import * as bootstrap from 'bootstrap';
 
 import { Bill } from '../bill';
 import { BillService } from '../bill.service';

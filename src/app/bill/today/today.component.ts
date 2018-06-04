@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 export class TodayComponent implements OnInit {
   bills: Bill[] = [];
   total: number = 0;
+  chartData: number[][] = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]];
+  chartObject: Chart;
 
   constructor(public router: Router,
     public billService: BillService) { }
@@ -23,36 +25,67 @@ export class TodayComponent implements OnInit {
   }
 
   getBills() {
-    this.billService.getBills().subscribe(bills => { this.bills = bills; this.refreshChart() });
+    this.billService.getBills().subscribe(bills => { this.bills = bills; this.createChart() });
   }
-  refreshChart() {
-    let ctx = document.getElementById('pieChart') as HTMLCanvasElement;
-    let data = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]];
+  getChartData() {
+    this.chartData = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]];
+    this.total = 0;
     this.bills.forEach(bill => {
-      data[bill.user][bill.category] += bill.cost;
+      this.chartData[bill.user][bill.category] += bill.cost;
       this.total += bill.cost;
     })
-    let chart = new Chart(ctx, {
+  }
+
+  refreshChart() {
+    this.getChartData();
+    this.chartObject.data.datasets = [{
+      label: '媛',
+      data: this.chartData[0],
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255,99,132,1)',
+      borderWidth: 1
+    },
+    {
+      label: '阳',
+      data: this.chartData[1],
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgba(54, 162, 235, 1)',
+      borderWidth: 1
+    },
+    {
+      label: '均摊',
+      data: this.chartData[2],
+      backgroundColor: 'rgba(255, 206, 86, 0.2)',
+      borderColor: 'rgba(255, 206, 86, 1)',
+      borderWidth: 1
+    }]
+    this.chartObject.update();
+  }
+
+  createChart() {
+    this.getChartData();
+    let ctx = document.getElementById('pieChart') as HTMLCanvasElement;
+    this.chartObject = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: ["买菜做饭", "家具器件", "鞋帽衣裤", "零食饮料", "其他"],
         datasets: [{
           label: '媛',
-          data: data[0],
+          data: this.chartData[0],
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
           borderColor: 'rgba(255,99,132,1)',
           borderWidth: 1
         },
         {
           label: '阳',
-          data: data[1],
+          data: this.chartData[1],
           backgroundColor: 'rgba(54, 162, 235, 0.2)',
           borderColor: 'rgba(54, 162, 235, 1)',
           borderWidth: 1
         },
         {
           label: '均摊',
-          data: data[2],
+          data: this.chartData[2],
           backgroundColor: 'rgba(255, 206, 86, 0.2)',
           borderColor: 'rgba(255, 206, 86, 1)',
           borderWidth: 1
@@ -72,5 +105,11 @@ export class TodayComponent implements OnInit {
   }
   update(id: number) {
     this.router.navigateByUrl('/today/'+id);
+  }
+  delete(id: number) {
+
+    this.billService.deleteBill(id).subscribe(
+      _ => this.refreshChart()
+    )
   }
 }
