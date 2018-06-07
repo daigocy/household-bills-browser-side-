@@ -16,6 +16,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { Error404Component } from './error404/error404.component';
 import { HomeComponent } from './bill/home/home.component';
 import { EditorComponent } from './bill/editor/editor.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EditorComponent } from './bill/editor/editor.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

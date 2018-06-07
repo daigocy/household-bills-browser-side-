@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { Bill, BillHistory} from './bill';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 let date1 = new Date();
 date1.setFullYear(2018,4,24);
@@ -48,35 +54,37 @@ const billHistory:BillHistory[] = [
 })
 export class BillService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+  private billsUrl: string = 'api/bills/';
+
   getBills(): Observable<Bill[]> {
-    return of(bills);
+    return this.http.get<Bill[]>(this.billsUrl).pipe(
+      tap(bills => {console.log(bills)}),
+    )
   }
 
   getBill(id: number): Observable<Bill> {
-    return of(bills.filter(bill => {return bill.id==id})[0]);
+    return this.http.get<Bill>(this.billsUrl +id).pipe(
+      tap(b => {
+        if(b) {
+          b.date = new Date(b.date);
+        }
+      }),
+    )
   }
   getBillHistory():Observable<BillHistory[]> {
     return of(billHistory);
   }
   postBill(bill:Bill):Observable<any> {
-    let newId = bills.length? bills[bills.length-1].id +1: 1;
-    bill.id = newId;
-    bills.push(bill);
-    return of('ok');
+    return this.http.post(this.billsUrl, bill, httpOptions);
   }
   putBill(bill: Bill):Observable<any> {
-    return of('ok');
+    return this.http.put(this.billsUrl, bill, httpOptions);
   }
   deleteBill(bill:Bill | number):Observable<any> {
     let id = typeof bill === 'number'?bill:bill.id;
-    let billIndex = 0;
-    bills.forEach((b,index) => {
-      if(b.id === id) {
-        billIndex = index;
-      }
-    });
-    bills.splice(billIndex, 1);
-    return of('ok');
+    return this.http.delete<any>(this.billsUrl +id, httpOptions);
   }
 }

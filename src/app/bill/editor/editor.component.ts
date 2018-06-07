@@ -14,7 +14,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@ang
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit, AfterViewInit {
-  bill: Bill;
+  bill: Bill = new Bill(0,'',0,'',0,0,new Date());
   formModel: FormGroup;
   users: string[] = ["媛媛", "阳阳"]
 
@@ -38,8 +38,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
       }
     )
     this.activatedRoute.params.subscribe((params: Params) => {
-      let id = params['id'];
-      this.getBill(id);
+      let id = parseInt(params['id']);
+      if(id) {this.getBill(id);}
     })
   }
   ngAfterViewInit() {
@@ -47,7 +47,6 @@ export class EditorComponent implements OnInit, AfterViewInit {
       showInputs: false,
       showMeridian: false,
       minuteStep:1,
-      defaultTime: ''
     });
   }
 
@@ -100,7 +99,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   doSave() {
     let newBill = this.formModel.value;
     this.bill.name = newBill.name;
-    this.bill.category = newBill.category as number;
+    this.bill.category = parseInt(newBill.category);
     this.bill.desc = newBill.desc;
     this.bill.cost = newBill.cost;
     let user = -1;
@@ -110,8 +109,14 @@ export class EditorComponent implements OnInit, AfterViewInit {
     let hm = newBill.time.split(':');
     this.bill.date.setHours(hm[0]);
     this.bill.date.setMinutes(hm[1]);
-    this.billService.postBill(this.bill).subscribe(
-      () => this.goBack()
-    )
+    if(this.bill.id) {
+      this.billService.putBill(this.bill).subscribe(
+        () => this.goBack()
+      )
+    }else{
+      this.billService.postBill(this.bill).subscribe(
+        () => this.goBack()
+      )
+    }
   }
 }

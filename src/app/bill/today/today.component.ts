@@ -20,12 +20,13 @@ export class TodayComponent implements OnInit {
     public billService: BillService) { }
 
   ngOnInit() {
+    this.createChart()
     this.getBills();
 
   }
 
   getBills() {
-    this.billService.getBills().subscribe(bills => { this.bills = bills; this.createChart() });
+    this.billService.getBills().subscribe(bills => { this.bills = bills; this.refreshChart() });
   }
   getChartData() {
     this.chartData = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]];
@@ -109,7 +110,7 @@ export class TodayComponent implements OnInit {
   delete(id: number) {
 
     this.billService.deleteBill(id).subscribe(
-      _ => this.refreshChart()
+      _ => this.getBills()
     )
   }
 }
