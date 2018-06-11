@@ -108,7 +108,6 @@ export class TodayComponent implements OnInit {
     this.router.navigateByUrl('/today/'+id);
   }
   delete(id: number) {
-
     this.billService.deleteBill(id).subscribe(
       _ => this.getBills()
     )

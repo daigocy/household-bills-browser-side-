@@ -60,9 +60,7 @@ export class BillService {
   private billsUrl: string = 'api/bills/';
 
   getBills(): Observable<Bill[]> {
-    return this.http.get<Bill[]>(this.billsUrl).pipe(
-      tap(bills => {console.log(bills)}),
-    )
+    return this.http.get<Bill[]>(this.billsUrl);
   }
 
   getBill(id: number): Observable<Bill> {
